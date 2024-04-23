@@ -457,6 +457,16 @@ if($_SESSION['perfil'] == 'Pastoreo'){ ?>
 
 }
 
+
+if($_SESSION['perfil'] == 'Estrategia'){ ?>
+
+  <script src="vistas/js/estrategia/estrategia.js"></script>
+
+<?php
+
+}
+
+
 ?>
 
 

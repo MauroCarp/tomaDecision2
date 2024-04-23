@@ -174,7 +174,7 @@ if(!empty($consignatarios)){
     
     $precioTotalPorConsignatario = $dataAnimalesConsignatario[0]['precio'];
     
-    $precioPromedioTotalPorConsignatario = number_format($dataAnimalesConsignatario[0]['precio'] / $dataAnimalesConsignatario[0]['kgComprado'] , 2);
+    $precioPromedioTotalPorConsignatario = number_format($dataAnimalesConsignatario[0]['precio'] / $dataAnimalesConsignatario[0]['kgComprado'] , 2,'.','');
 
     $coloresConsignatario = "'".$colores2[0]."'";
 
@@ -207,7 +207,7 @@ if(!empty($consignatarios)){
 
 
         $precioTotalPorConsignatario = $precioTotalPorConsignatario.','.$dataAnimalesConsignatario[$i]['precio'];
-        $precioPromedioTotalPorConsignatario = $precioPromedioTotalPorConsignatario.','.number_format($dataAnimalesConsignatario[$i]['precio'] / $dataAnimalesConsignatario[$i]['kgComprado'] , 2);
+        $precioPromedioTotalPorConsignatario = $precioPromedioTotalPorConsignatario.','.number_format($dataAnimalesConsignatario[$i]['precio'] / $dataAnimalesConsignatario[$i]['kgComprado'] , 2,'.','');
 
 
         $coloresConsignatario = $coloresConsignatario.",'".$colores2[$i]."'";

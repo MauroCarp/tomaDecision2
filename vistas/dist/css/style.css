@@ -66,9 +66,18 @@
     animation: spin 2s linear infinite;
 }
 
-.real{
+.planificado{
     color:green;
 }
-.planificado{
+
+.real{
     color:blue;
+}
+
+.rowDieta, .rowConsumos, .rowTotales{
+    display:none;
+}
+
+.tablaEstrategia td:has(input), .tablaEstrategia td:has(select), .ingEgrTable td:has(input){
+    padding: 0!important;
 }

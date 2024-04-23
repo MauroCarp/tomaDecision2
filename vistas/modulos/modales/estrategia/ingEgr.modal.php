@@ -26,7 +26,7 @@
 
           <div class="box-body">
 
-            <table class="table table-bordered">
+            <table class="table table-bordered ingEgrTable">
 
               <thead>
                 <tr>

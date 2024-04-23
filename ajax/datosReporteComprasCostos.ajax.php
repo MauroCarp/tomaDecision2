@@ -40,8 +40,10 @@ function fechaUniversal($fecha){
     for ($i=0; $i < sizeof($data) ; $i++) { 
 
         $dataCostos[$i]['fecha'] = $data[$i]['fecha'];
-        
+        var_dump($data[$i]['precioTotalKg']);
+        var_dump($data[$i]['kgComprado']);
         $precioKgPromedio = number_format(($data[$i]['precioTotalKg'] / $data[$i]['kgComprado']),2);
+        var_dump($precioKgPromedio);
 
         $dataCostos[$i]['precioKgPromedio'] = $precioKgPromedio;
 
@@ -62,7 +64,7 @@ function fechaUniversal($fecha){
 
     }
 
-
+    die;
     $fechasCompras = '';
 
     $precioKgPromedio = '';
