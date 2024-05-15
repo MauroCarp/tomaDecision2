@@ -24,6 +24,18 @@ class ControladorEstrategia{
 		return $respuesta;
 
 	}
+
+    static public function ctrMostrarEstrategia($campania = null){
+
+		$tabla = "estrategias";
+
+		$respuesta = ModeloEstrategia::mdlMostrarEstrategia($tabla,$campania);
+	
+		$campanias = ModeloEstrategia::mdlMostrarEstrategia($tabla,'campanias');
+
+		return array('estrategia'=>$respuesta,'campanias'=>$campanias);
+
+	}
     
 	/*=============================================
 	MOSTRAR DATOS ANUAL

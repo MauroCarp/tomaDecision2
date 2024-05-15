@@ -137,6 +137,50 @@
 
           </div>
           
+          <hr>
+
+          <h3>Dieta</h3>
+
+          <div class="row">
+
+            <div class="col-sm-4">
+
+              <div class="form-group">
+
+                <label>% Silo</label>
+
+                <input type="text" class="form-control">
+
+              </div>
+
+            </div>
+
+            <div class="col-sm-4">
+
+              <div class="form-group">
+
+                <label>% Maiz</label>
+
+                <input type="text" class="form-control">
+
+              </div>
+
+            </div>
+
+            <div class="col-sm-4">
+
+              <div class="form-group">
+
+                <label>% Soja</label>
+
+                <input type="text" class="form-control">
+
+              </div>
+
+            </div>
+
+          </div>
+          
         </div>
 
       </div>

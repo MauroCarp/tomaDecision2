@@ -15,7 +15,11 @@ $dietas = ControladorEstrategia::ctrMostrarDietas();
 
 $dietasOptions = selectDietas($dietas);
 
+$campania = (isset($_GET['campania'])) ? $_GET['campania'] : null;
 
+$data = ControladorEstrategia::ctrMostrarEstrategia($campania);
+
+$meses = array(5=>'May',6=>'Jun',7=>'Jul',8=>'Ago',9=>'Sep',10=>'Oct',11=>'Nov',12=>'Dic',1=>'Ene',2=>'Feb',3=>'Mar',4=>'Abr');
 ?>
 
 
@@ -27,7 +31,7 @@ $dietasOptions = selectDietas($dietas);
 
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#estrategia" aria-controls="estrategia" role="tab" data-toggle="tab">Estrategia</a></li>
-          <li role="presentation"><a href="#consumos" aria-controls="consumos" role="tab" data-toggle="tab">Consumos</a></li>
+          <li role="presentation"><a href="#dietas" aria-controls="dietas" role="tab" data-toggle="tab">Dietas</a></li>
           <li role="presentation"><a href="#graficos" aria-controls="graficos" role="tab" data-toggle="tab">Graficos</a></li>
         </ul>
 
@@ -37,8 +41,8 @@ $dietasOptions = selectDietas($dietas);
             <?php include('estrategia.php'); ?>
           </div>
 
-          <div role="tabpanel" class="tab-pane" id="consumos">
-          <?php include('consumos.php'); ?>
+          <div role="tabpanel" class="tab-pane" id="dietas">
+          <?php include('dietas.php'); ?>
 
           </div>
 
@@ -62,7 +66,8 @@ $dietasOptions = selectDietas($dietas);
 include 'vistas/modulos/modales/estrategia/cargaReal.modal.php';
 include 'vistas/modulos/modales/estrategia/ingEgr.modal.php';
 
-include 'vistas/modulos/modales/estrategia/dietas.modal.php';
+include 'vistas/modulos/modales/estrategia/cargaCampania.modal.php';
+include 'vistas/modulos/modales/estrategia/stock.modal.php';
 
 
 $campaniaAgro = isset($_COOKIE['campaniaAgro']) ? true : false;

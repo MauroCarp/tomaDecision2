@@ -1258,6 +1258,8 @@
             generarGraficoBarSimple(dataCargasSociales,divId,labels,tituloLabel)
 
           }
+
+
         
       const btnsZoomGrafico = document.querySelectorAll('.zoomGraficos')
 

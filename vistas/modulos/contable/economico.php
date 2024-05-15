@@ -203,6 +203,89 @@ include 'cajasEconomico.php';
     </div>
 
 </div>
+
+<div class="row">
+
+
+    <div class="col-lg-4">
+        
+        <div class="row">
+
+            <div class="col-lg-12">
+                
+                <div class="box box-success">
+
+                    <div class="box-header with-border">
+
+                        <h3 class="box-title">Bienes de Cambio</h3>
+
+                        <div class="box-tools pull-right" bis_skin_checked="1">
+
+                            <button type="button" class="btn btn-box-tool zoomGraficos" data-modal="zGraficoBienesDeCambio<?=$campo?>" data-widget="zoom"><i class="fa fa-search-plus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+
+                        <div class="chart">
+
+                            <canvas id="bienesDeCambioChart<?=$campo?>"></canvas>
+
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-lg-4">
+        
+        <div class="row">
+
+            <div class="col-lg-12">
+                
+                <div class="box box-success">
+
+                    <div class="box-header with-border">
+
+                        <h3 class="box-title">Bienes de Uso</h3>
+
+                        <div class="box-tools pull-right" bis_skin_checked="1">
+
+                            <button type="button" class="btn btn-box-tool zoomGraficos" data-modal="zGraficoBienesDeUso<?=$campo?>" data-widget="zoom"><i class="fa fa-search-plus"></i>
+                            </button>
+
+                        </div>
+                    </div>
+
+
+                    <div class="box-body">
+
+                        <div class="chart">
+
+                            <canvas id="bienesDeUsoChart<?=$campo?>"></canvas>
+
+                        </div>
+
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <?php
 
 $tituloGrafico = 'Ventas Agricultura';
@@ -218,6 +301,16 @@ include 'graficoContable.modal.php';
 $tituloGrafico = 'Ventas Ganaderia por Lineas de Producto';
 $idGraficoModal = 'graficoGanaderiaModal'  . $campo;
 $idGrafico = 'idGraficoGanaderia2'  . $campo;
+include 'graficoContable.modal.php';
+
+$tituloGrafico = 'Bienes de Cambio';
+$idGraficoModal = 'graficoBienesDeCambioModal'  . $campo;
+$idGrafico = 'idGraficoBienesDeCambio'  . $campo;
+include 'graficoContable.modal.php';
+
+$tituloGrafico = 'Bienes de Uso';
+$idGraficoModal = 'graficoBienesDeUsoModal'  . $campo;
+$idGrafico = 'idGraficoBienesDeUso'  . $campo;
 include 'graficoContable.modal.php';
 
 $tituloGrafico = 'M/V - BAAI';
