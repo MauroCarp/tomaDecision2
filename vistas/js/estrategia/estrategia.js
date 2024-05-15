@@ -40,17 +40,17 @@ let calculateStockAndTotals = () => {
         let tdVenta = tr[7].childNodes
         let venta = parseFloat(tdVenta[0].value)
 
-        let tdKgVenta = tr[7].childNodes
+        let tdKgVenta = tr[9].childNodes
         let kgVenta = parseFloat(tdKgVenta[0].value)
 
-        let tdKgIngreso = tr[7].childNodes
+        let tdKgIngreso = tr[5].childNodes
         let kgIngreso = parseFloat(tdKgIngreso[0].value)
 
         stock += (parseFloat(ingreso) - parseFloat(venta))
 
         let tdStock = tr[11].childNodes
         tdStock[0].value = stock
-
+        console.log(kgIngreso)
         ingresoTotal += ingreso
         ventaTotal += venta
         kgIngresoTotal += kgIngreso
@@ -63,6 +63,13 @@ let calculateStockAndTotals = () => {
     $('#totalKgIngreso').val(kgIngresoTotal)
     $('#totalVenta').val(ventaTotal)
     $('#totalKgVenta').val(kgVentaTotal)
+
+    $('#avgIngreso').val((ingresoTotal / 12).toFixed(2))
+    $('#avgKgIngreso').val((kgIngresoTotal / 12).toFixed(2))
+    $('#avgVenta').val((ventaTotal / 12).toFixed(2))
+    $('#avgKgVenta').val((kgVentaTotal / 12).toFixed(2))
+    $('#avgStock').val((stock / 12).toFixed(2))
+
     
 }
 

@@ -43,98 +43,98 @@
               <tbody>
                 <tr class="monthRow">
                   <td>Enero</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso1" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso1" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Febrero</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso2" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso2" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Marzo</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso3" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso3" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Abril</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso4" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso4" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Mayo</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso5" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso5" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Junio</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso6" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso6" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Julio</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso7" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso7" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Agosto</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso8" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso8" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Septiembre</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso9" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso9" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Octubre</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso10" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso10" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Noviembre</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso11" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso11" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr class="monthRow">
                   <td>Diciembre</td>
-                  <td><input class="form-control ingreso" type="number" name="ingreso12" id="" value="0"></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control venta" type="number" name="" id="" value="0"></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="" value="0"></td>
+                  <td><input class="form-control ingreso" type="number" name="ingreso12" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control venta" type="number" name="" id="" min="0" value="0"></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="" min="0" value="0"></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" readOnly></td>
                 </tr>
                 <tr style="font-weight:bolder;">
@@ -146,21 +146,21 @@
                   <td><input class="form-control total" type="text" name="" id="totalStock" readOnly value="0"></td>
                 </tr>
                 <tr>
-                  <td><b>Promedio</b></td>
-                  <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
-                  <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
-                  <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
-                  <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
-                  <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
+                  <td style="font-weight:bolder;"><b>Promedio</b></td>
+                  <td><input class="form-control" type="text" name="" id="avgIngreso" readOnly value="0"></td>
+                  <td><input class="form-control" type="text" name="" id="avgKgIngreso" readOnly value="0"></td>
+                  <td><input class="form-control" type="text" name="" id="avgVenta" readOnly value="0"></td>
+                  <td><input class="form-control" type="text" name="" id="avgKgVenta" readOnly value="0"></td>
+                  <td><input class="form-control" type="text" name="" id="avgStock" readOnly value="0"></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td><b>D. S.</b></td>
                   <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
                   <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
                   <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
                   <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
                   <td><input class="form-control" type="text" name="" id="" readOnly value="0"></td>
-                </tr>
+                </tr> -->
               </tbody>
 
             </table>
