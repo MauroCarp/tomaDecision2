@@ -65,9 +65,10 @@ $meses = array(5=>'May',6=>'Jun',7=>'Jul',8=>'Ago',9=>'Sep',10=>'Oct',11=>'Nov',
 
 include 'vistas/modulos/modales/estrategia/cargaReal.modal.php';
 include 'vistas/modulos/modales/estrategia/ingEgr.modal.php';
+include 'vistas/modulos/modales/estrategia/stock.modal.php';
+
 
 include 'vistas/modulos/modales/estrategia/cargaCampania.modal.php';
-include 'vistas/modulos/modales/estrategia/stock.modal.php';
 
 
 $campaniaAgro = isset($_COOKIE['campaniaAgro']) ? true : false;

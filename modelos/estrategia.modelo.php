@@ -91,4 +91,32 @@ class ModeloEstrategia{
 
 	}
 
+
+	static public function mdlSetearCampania($tabla,$data){
+
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idDieta = :idDieta, stockSoja = :stockSoja , stockMaiz = :stockMaiz, stockSilo = :stockSilo, adpPlan = :adpPlan, msPlan = :msPlan, stockAnimales = :stockAnimales, seteado = 1 WHERE campania = :campania");
+
+		$stmt -> bindParam(":idDieta", $data['idDieta'], PDO::PARAM_STR);
+		$stmt -> bindParam(":stockSoja", $data['stockSoja'], PDO::PARAM_STR);
+		$stmt -> bindParam(":stockMaiz", $data['stockMaiz'], PDO::PARAM_STR);
+		$stmt -> bindParam(":stockSilo", $data['stockSilo'], PDO::PARAM_STR);
+		$stmt -> bindParam(":adpPlan", $data['adp'], PDO::PARAM_STR);
+		$stmt -> bindParam(":msPlan", $data['msPorce'], PDO::PARAM_STR);
+		$stmt -> bindParam(":stockAnimales", $data['stockAnimales'], PDO::PARAM_STR);
+		$stmt -> bindParam(":campania", $data['campania'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
 }

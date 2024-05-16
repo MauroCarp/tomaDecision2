@@ -37,24 +37,17 @@
                           <table class="table table-bordered">
 
                               <thead>
-                              <tr>
-                                  <th></th>
-                                  <th>Silo</th>
-                                  <th>Maiz</th>
-                                  <th>Soja</th>
                                   <th>Animales</th>
-                              </tr>
                               </thead>
 
                               <tbody>
 
                               <tr>
 
-                                  <td><b>Stock Inicial</b></td>
-                                  <td><input class="form-control" type="number" name="stockSilo" id="stockSilo" value="0"></td>
-                                  <td><input class="form-control" type="number" name="stockMaiz" id="stockMaiz" value="0"></td>
-                                  <td><input class="form-control" type="number" name="stockSoja" id="stockSoja" value="0"></td>
-                                  <td><input class="form-control" type="number" name="stockAnimales" id="stockAnimales" value="0"></td>
+                                  <!-- <td><input class="form-control stockInicial" type="number" id="stockSilo" value="<?//=($data['estrategia']['seteado']) ? $data['stockSilo'] : '0'?>" <?//=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                                  <td><input class="form-control stockInicial" type="number" id="stockMaiz" value="<?//=($data['estrategia']['seteado']) ? $data['stockMaiz'] : '0'?>" <?//=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                                  <td><input class="form-control stockInicial" type="number" id="stockSoja" value="<?//=($data['estrategia']['seteado']) ? $data['stockSoja'] : '0'?>" <?//=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td> -->
+                                  <td><input class="form-control stockInicial" type="number" id="stockAnimales" value="<?=($data['estrategia']['seteado']) ? $data['stockAnimales'] : '0'?>" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
 
                               </tr>
 
@@ -91,13 +84,4 @@
   </div>
 
 </div>
-
-<?php
-
-// $cargarArchivo = new ControladorEstrategia();
-
-// $cargarArchivo->ctrCargarArchivo();
-
-
-?>
 
