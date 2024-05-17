@@ -94,7 +94,7 @@ $('.btnCargaReal').on('click',function(){
 })
 
 $('.selectInsumos').select2({
-    width:'auto'
+    width:'100%'
 })
 
 $('.selectCampania').select2({
@@ -118,3 +118,166 @@ $('#stockAnimales').on('change',function(){
 })
 
 
+let insumoIndex = 1
+
+$('#btnAgregarInsumo').on('click',function(){
+
+    let nuevoInsumo = $(`<div class="row" style="margin-top:10px;">
+
+                            <div class="col-lg-7    ">
+
+                                <select class="selectInsumos" id="insumo${insumoIndex}" name="insumo[]">
+                                
+                                </select>
+
+                            </div>
+
+                            <div class="col-lg-3"><input class="form-control input-sm porcentajeInsumo" onchange="sumarPorcentajes()" type="number" name="porcentajeInsumo[]"></div>
+
+                            <div class="col-lg-2"><button class="btn btn-danger" onclick="$(this).closest('.row').remove();sumarPorcentajes()"><i class="fa fa-trash"></i></button></div>
+
+
+                        </div>`)
+
+    $("#insumos").append(nuevoInsumo);
+
+    generarOptionInsumos(`insumo${insumoIndex}`)
+
+    insumoIndex++
+})
+
+let generarOptionInsumos = (idSelect)=>{
+
+    $.ajax({
+
+        method:'post',
+        url:'ajax/estrategia.ajax.php',
+        data:{accion:'getInsumos'},
+        success:function(resp){
+
+            resp = JSON.parse(resp)
+
+            let options = [{id:'',text:'Seleccionar Insumo'}]
+
+            resp.forEach(element => {
+                options.push({id:element.id,text:element.insumo})
+            });
+
+            $(`#${idSelect}`).select2({
+                width:'100%',
+                data:options
+            })
+
+        }
+
+    })
+}
+
+$('.table').on('click','.verDieta',function(){
+
+    $('#composicionDieta').show(200)
+
+    let idDieta = $(this).attr('idDieta')
+
+
+    $.ajax({
+        method:'post',
+        url:'ajax/estrategia.ajax.php',
+        data:{accion:'verDieta',idDieta},
+        success:function(resp){
+            console.log(resp)
+            resp = JSON.parse(resp)
+
+            let tr = []
+
+            resp.forEach(element => {
+                
+                tr.push(`<tr><td>${element['insumo']}</td><td>${element['porcentaje']}</td>`)
+
+            });
+
+            $('#insumosDieta').empty().append(tr.join(','))
+            
+
+        }
+    })
+
+})
+
+$('.table').on('click','.eliminarDieta',function(){
+
+    let idDieta = $(this).attr('idDieta')
+
+    let rowDieta = $(this).closest('tr')
+    $('#composicionDieta').hide(200)
+
+    $.ajax({
+
+        method:'post',
+        url:'ajax/estrategia.ajax.php',
+        data:{accion:'eliminarDieta',idDieta},
+        success:function(resp){
+
+          if(resp == 'ok'){
+                swal({
+
+                    type: "success",
+                    title: "Dieta eliminada correctamente",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+
+                }) 
+
+                rowDieta.remove()
+            }else{
+                swal({
+
+                    type: "error",
+                    title: "Se produjo un error al eliminar la Dieta",
+                    showConfirmButton: true,
+                    confirmButtonText: "Cerrar"
+
+                });
+            }
+
+        }
+
+    })
+
+})
+
+
+let sumarPorcentajes = ()=>{
+
+    let total = 0
+
+    $('.porcentajeInsumo').each(function(){
+
+        if($(this).val() != '')
+            total += parseFloat($(this).val())
+
+    })
+
+    if(total > 100){
+        
+        swal({
+            type: "error",
+            title: "La compocision de la dieta supera el 100%",
+            showConfirmButton: true,
+            confirmButtonText: "Cerrar"
+            })
+
+        $('#btnNuevaDieta').attr('disabled','disabled')
+
+    } else {
+
+        $('#btnNuevaDieta').removeAttr('disabled')
+
+    }
+
+    $('#totalPorcentaje').html(total)
+
+    return total
+
+}
+ 

@@ -1,8 +1,8 @@
 <?php
 define('MYSQL_SERVIDOR','localhost');
 define('MYSQL_USUARIO','root');
-define('MYSQL_CONTRASENA','rot');
-define('MYSQL_BD','barlovento');
+define('MYSQL_CONTRASENA','');
+define('MYSQL_BD','barlo');
 $conexion = mysqli_connect(MYSQL_SERVIDOR, MYSQL_USUARIO, MYSQL_CONTRASENA, MYSQL_BD);
 
 
@@ -10,9 +10,9 @@ class Conexion{
 
 	static public function conectar(){
 
-		$link = new PDO("mysql:host=localhost;dbname=barlovento",
+		$link = new PDO("mysql:host=localhost;dbname=barlo",
 			            "root",
-			            "root");
+			            "");
 
 		$link->exec("set names utf8");
 

@@ -8,23 +8,50 @@ class ModeloEstrategia{
 	MOSTRAR Datos
 	=============================================*/
 
-	static public function mdlMostrarInsumos($tabla){
+	static public function mdlMostrarInsumos($tabla,$id = null){
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY insumo ASC");
+		if($id == null){
 
-        $stmt -> execute();
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY insumo ASC");
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll();
 
-        return $stmt -> fetchAll();
+		} else {
+
+			$stmt = Conexion::conectar()->prepare("SELECT id,insumo FROM $tabla WHERE id IN ($id) ORDER BY id ASC");
+			// $stmt -> bindParam(":id", $id, PDO::PARAM_STR);
+
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll();
+
+		}
+
 		
 	}
 
-	static public function mdlMostrarDietas($tabla){
+	static public function mdlMostrarDietas($tabla,$idDieta = null){
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre ASC");
+		if($idDieta == null){
 
-        $stmt -> execute();
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla ORDER BY nombre ASC");
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetchAll();
 
-        return $stmt -> fetchAll();
+		} else {
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id = :id");
+			$stmt -> bindParam(":id", $idDieta, PDO::PARAM_STR);
+	
+			$stmt -> execute();
+	
+			return $stmt -> fetch();
+
+		}
 		
 	}
 
@@ -105,6 +132,46 @@ class ModeloEstrategia{
 		$stmt -> bindParam(":msPlan", $data['msPorce'], PDO::PARAM_STR);
 		$stmt -> bindParam(":stockAnimales", $data['stockAnimales'], PDO::PARAM_STR);
 		$stmt -> bindParam(":campania", $data['campania'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
+	static public function mdlEliminarDieta($tabla,$id){
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
+
+		$stmt -> bindParam(":id", $id, PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
+	static public function mdlNuevaDieta($tabla,$data){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre,insumos,porcentajes) VALUES(:nombre,:insumos,:porcentajes)");
+
+		$stmt -> bindParam(":nombre", $data['nombre'], PDO::PARAM_STR);
+		$stmt -> bindParam(":insumos", str_replace('"','',$data['insumos']), PDO::PARAM_STR);
+		$stmt -> bindParam(":porcentajes", str_replace('"','',$data['porcentajes']), PDO::PARAM_STR);
 				
 		if($stmt -> execute()){
 		

@@ -5,6 +5,20 @@ class ControladorEstrategia{
 	MOSTRAR DATOS
 	=============================================*/
 
+	static public function buscarInsumoPorId($id, $array) {
+
+		foreach ($array as $item) {
+
+			if ($item['id'] == $id) {
+
+				return $item['insumo'];
+
+			}
+
+		}
+		return null; // Si no se encuentra el id, devolver null o un valor por defecto
+	}
+
 	static public function ctrMostrarInsumos(){
 
 		$tabla = "insumos";
@@ -22,6 +36,30 @@ class ControladorEstrategia{
 		$respuesta = ModeloEstrategia::mdlMostrarDietas($tabla);
 
 		return $respuesta;
+
+	}
+
+	static public function ctrMostrarDieta($idDieta){
+
+		$tabla = "dietas";
+
+		$respuesta = ModeloEstrategia::mdlMostrarDietas($tabla,$idDieta);
+
+		$idInsumos = implode(',',json_decode($respuesta['insumos']));
+
+		$porcentajes = json_decode($respuesta['porcentajes']);
+
+		$insumos = ModeloEstrategia::mdlMostrarInsumos('insumos',$idInsumos);
+
+		$data = array();
+
+		foreach (json_decode($respuesta['insumos']) as $key => $value) {
+			
+			$data[] = array('insumo'=>ControladorEstrategia::buscarInsumoPorId($value,$insumos),'porcentaje'=>$porcentajes[$key]);
+
+		}
+
+		return $data;
 
 	}
 
@@ -101,10 +139,70 @@ class ControladorEstrategia{
 
 	}
 
+	static public function ctrEliminarDieta($id){
 
+		$tabla = 'dietas';
 
+		return ModeloEstrategia::mdlEliminarDieta($tabla,$id);
 
+	}
 
+	static public function ctrNuevaDieta(){
+		
+		if(isset($_POST['btnNuevaDieta'])){
+
+			$tabla = 'dietas';
+
+			$data = array('nombre'=>$_POST['nombreDieta'],'insumos'=>json_encode($_POST['insumo']),'porcentajes'=>json_encode($_POST['porcentajeInsumo']));
+
+			$respuesta = ModeloEstrategia::mdlNuevaDieta($tabla,$data);
+
+			if($respuesta != 'ok'){
+
+				echo'<script>
+
+                swal({
+                        type: "error",
+                        title: `Hubo un problema al cargar la dieta!';
+
+                        if($_SESSION['usuario'] == 'tecnicoEstrategia'){
+                            echo json_encode($respuesta);
+                        }
+
+                        echo '`,
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        })
+                    })
+
+                </script>';
+
+            } else {
+
+                echo'<script>
+
+                swal({
+                        type: "success",
+                        title: "La Dieta ha sido cargada correctamente",
+                        showConfirmButton: true,
+                        confirmButtonText: "Cerrar"
+                        }).then(function(result) {
+                                if (result.value) {
+
+									window.location = "index.php?ruta/estrategia"
+                                }
+                            })
+
+                </script>';
+
+            
+			}
+
+		}
+
+		
+
+	}
 
 }
 	
