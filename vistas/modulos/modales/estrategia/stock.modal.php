@@ -46,8 +46,6 @@
 
                               <tr id="trStockInicial">
 
-                                  <!-- <td><input class="form-control stockInicial" type="number" id="stockSilo" value="<?//=($data['estrategia']['seteado']) ? $data['stockSilo'] : '0'?>" <?//=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                                  <td><input class="form-control stockInicial" type="number" id="stockSoja" value="<?//=($data['estrategia']['seteado']) ? $data['stockSoja'] : '0'?>" <?//=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td> -->
                                   <td><input class="form-control stockInicial" type="number" id="stockAnimales" value="<?=($data['estrategia']['seteado']) ? $data['stockAnimales'] : '0'?>" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
 
                               </tr>

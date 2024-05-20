@@ -305,9 +305,7 @@
 
           </table>
 
-          <input type="hidden" name="stockSilo">
-          <input type="hidden" name="stockMaiz">
-          <input type="hidden" name="stockSoja">
+          <input type="hidden" name="stockInsumos">
           <input type="hidden" name="stockAnimales">
 
           <input type="hidden" name="ingreso1">

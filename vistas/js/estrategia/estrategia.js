@@ -111,10 +111,10 @@ $('#dieta').on('change',function(){
                     $('#trStock').append($(`
                         <th class="stockInsumos">${insumo}</th>
                     `))
-                    $('#trStockInicial').append($(`
-                        <td class="stockInsumos"><input class="form-control" type="number" id="stockInsumo[]" value="0"></td>
-                    `))
 
+                    $('#trStockInicial').append($(`
+                        <td class="stockInsumos"><input class="form-control stockInsumosModal" type="number" onClick="setearStockInsumos()"  value="0"></td>
+                    `))
 
                     let tr = document.createElement('TR')
                     tr.setAttribute('class','insumosDieta')
@@ -139,8 +139,7 @@ $('#dieta').on('change',function(){
                         
                         let td = document.createElement('TD')
                         td.setAttribute('style','border: 1px solid #f4f4f4;padding: 8px;box-sizing:border-boxvertical-align: top;')
-
-
+                        
                         td.append(inputInsumo)
                         tr.append(td)
 
@@ -195,6 +194,19 @@ $('#stockAnimales').on('change',function(){
     calculateStockAndTotals()
 })
 
+
+let setearStockInsumos = ()=>{
+
+
+    let stockInsumos = []
+     
+    $('.stockInsumosModal').each(function(){
+        stockInsumos.push($(this).val())
+    })
+
+    $('input[name="stockInsumos"]').val(`[${stockInsumos}]`)
+
+}
 
 let insumoIndex = 1
 

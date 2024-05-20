@@ -93,17 +93,17 @@ class ControladorEstrategia{
 
 		if(isset($_POST['btnSetear'])){
 
-			$stockInsumos = array();
 			$ingresos = array();
 			$kgIngresos = array();
 			$ventas = array();
 			$kgVentas = array();
+			$compraInsumos = array();
 
 			foreach ($_POST as $key => $value) {
 
-				if(strpos($key,'insumo') === 0){
+				if(strpos($key,'insumo') === 0 && !strpos($key,'stockInsumo')){
 
-					$stockInsumos[str_replace('insumo','',$key)] = $value;		
+					$compraInsumos[str_replace('insumo','',$key)] = $value;		
 
 				}
 
@@ -132,7 +132,7 @@ class ControladorEstrategia{
 				}
 			}
 
-			$data = array('stockInsumos'=>str_replace('"','',json_encode($stockInsumos)),
+			$data = array('stockInsumos'=>$_POST['stockInsumos'],
 						  'stockAnimales'=>$_POST['stockAnimales'],
 						  'idDieta'=>$_POST['dieta'],
 						  'adp'=>$_POST['adpv'],
@@ -140,17 +140,16 @@ class ControladorEstrategia{
 						  'campania'=>$_POST['selectCampania']);
 
 			$idEstrategia = ControladorEstrategia::ctrSetearCampania($data);
-			
+
 			$dataAnimales = array('idEstrategia'=>$idEstrategia['id'],'ingresos'=>$ingresos,'kgIngresos'=>$kgIngresos,'ventas'=>$ventas,'kgVentas'=>$kgVentas);
-
+			
 			$setearAnimales = ControladorEstrategia::ctrSetearAnimales($dataAnimales);
+			
+			$dataInsumos = array('idEstrategia'=>$idEstrategia['id'],'insumos'=>$compraInsumos);
+	
+			$setearInsumos = ControladorEstrategia::ctrSetearInsumos($dataInsumos);
 
-			var_dump($setearAnimales);
-			die;
-			// SETEAR MOVIMIENTOS DE CEREAL Y MOVIMIENTOS DE ANIMALES
-
-
-			if($idEstrategia == 'ok'){
+			if($setearAnimales == 'ok' && $setearInsumos == 'ok'){
 				echo'<script>
 
 				swal({
@@ -187,9 +186,17 @@ class ControladorEstrategia{
 
 	static public function ctrSetearAnimales($data){
 
-		$tabla = 'movimientosAnimales';
+		$tabla = 'movimientosanimales';
 
 		return ModeloEstrategia::mdlSetearAnimales($tabla,$data);
+
+	}
+
+	static public function ctrSetearInsumos($data){
+
+		$tabla = 'movimientosCereales';
+
+		return ModeloEstrategia::mdlSetearInsumos($tabla,$data);
 
 	}
 
