@@ -125,92 +125,11 @@
 
             </thead>
             
-            <tbody>
-            <!-- ING SILO
-
-              <tr>
-
-                <td>Ing. Silo</td>
-
-                <?php if(!$data['estrategia']['seteado']){
-
-                  foreach ($meses as $key => $mes) { ?>
-                  
-                  <td><input class="form-control input-sm" type="text" name="ingresoSilo<?=$key?>" id="ingresoSilo<?=$key?>" value="0"></td>
-
-                  <?php } 
-
-                } else {
-
-                  foreach ($meses as $key => $mes) { ?>
-                  
-                  <td></td>
-
-                  <?php } 
-
-
-                } ?> 
-
-              </tr>
-            <!-ING MAIZ -->
-
-              <!--<tr>
-
-                <td>Ing. Maiz</td>
-                
-                <?php if(!$data['estrategia']['seteado']){
-
-                foreach ($meses as $key => $mes) { ?>
-
-                <td><input class="form-control input-sm" type="text" name="ingresoMaiz<?=$key?>" id="ingresoMaiz<?=$key?>" value="0"></td>
-
-                <?php } 
-
-                } else {
-
-                  foreach ($meses as $key => $mes) { ?>
-
-                <td></td>
-
-                <?php } 
-
-
-                } ?> 
-              
-              </tr>-->
-            <!-- ING SOJA -->
-              <!--<tr>
-
-                <td>Ing. Soja</td>
-                
-                <?php if(!$data['estrategia']['seteado']){
-
-                foreach ($meses as $key => $mes) { ?>
-
-                <td><input class="form-control input-sm" type="text" name="ingresoSoja<?=$key?>" id="ingresoSoja<?=$key?>" value="0"></td>
-
-                <?php } 
-
-                } else {
-
-                  foreach ($meses as $key => $mes) { ?>
-
-                <td></td>
-
-                <?php } 
-
-
-                } ?> 
-
-              </tr> -->
+            <tbody id="tbodyEstrategia">
 
               <tr>
 
                 <td>Ingresos</td>
-                <td><span class="planificado" id="ingPlan1"></span><span class="real" id="ingReal1"></span></td>
-                <td><span class="planificado" id="ingPlan2"></span><span class="real" id="ingReal2"></span></td>
-                <td><span class="planificado" id="ingPlan3"></span><span class="real" id="ingReal3"></span></td>
-                <td><span class="planificado" id="ingPlan4"></span><span class="real" id="ingReal4"></span></td>
                 <td><span class="planificado" id="ingPlan5"></span><span class="real" id="ingReal5"></span></td>
                 <td><span class="planificado" id="ingPlan6"></span><span class="real" id="ingReal6"></span></td>
                 <td><span class="planificado" id="ingPlan7"></span><span class="real" id="ingReal7"></span></td>
@@ -219,18 +138,16 @@
                 <td><span class="planificado" id="ingPlan10"></span><span class="real" id="ingReal10"></span></td>
                 <td><span class="planificado" id="ingPlan11"></span><span class="real" id="ingReal11"></span></td>
                 <td><span class="planificado" id="ingPlan12"></span><span class="real" id="ingReal12"></span></td>
+                <td><span class="planificado" id="ingPlan1"></span><span class="real" id="ingReal1"></span></td>
+                <td><span class="planificado" id="ingPlan2"></span><span class="real" id="ingReal2"></span></td>
+                <td><span class="planificado" id="ingPlan3"></span><span class="real" id="ingReal3"></span></td>
+                <td><span class="planificado" id="ingPlan4"></span><span class="real" id="ingReal4"></span></td>
                 
-                <!-- <td><span class="planificado">300</span></td>
-                <td><span class="planificado">150</span> | <span class="real">100</span></td> -->
               </tr>
 
               <tr>
 
                 <td>Egresos</td>
-                <td><span class="planificado" id="ventaPlan1"></span><span class="real" id="ventaReal1"></span></td>
-                <td><span class="planificado" id="ventaPlan2"></span><span class="real" id="ventaReal2"></span></td>
-                <td><span class="planificado" id="ventaPlan3"></span><span class="real" id="ventaReal3"></span></td>
-                <td><span class="planificado" id="ventaPlan4"></span><span class="real" id="ventaReal4"></span></td>
                 <td><span class="planificado" id="ventaPlan5"></span><span class="real" id="ventaReal5"></span></td>
                 <td><span class="planificado" id="ventaPlan6"></span><span class="real" id="ventaReal6"></span></td>
                 <td><span class="planificado" id="ventaPlan7"></span><span class="real" id="ventaReal7"></span></td>
@@ -239,6 +156,10 @@
                 <td><span class="planificado" id="ventaPlan10"></span><span class="real" id="ventaReal10"></span></td>
                 <td><span class="planificado" id="ventaPlan11"></span><span class="real" id="ventaReal11"></span></td>
                 <td><span class="planificado" id="ventaPlan12"></span><span class="real" id="ventaReal12"></span></td>
+                <td><span class="planificado" id="ventaPlan1"></span><span class="real" id="ventaReal1"></span></td>
+                <td><span class="planificado" id="ventaPlan2"></span><span class="real" id="ventaReal2"></span></td>
+                <td><span class="planificado" id="ventaPlan3"></span><span class="real" id="ventaReal3"></span></td>
+                <td><span class="planificado" id="ventaPlan4"></span><span class="real" id="ventaReal4"></span></td>
                 
 
               </tr>
@@ -246,10 +167,6 @@
               <tr>
 
                 <td>Cabezas</td>
-                <td><span class="planificado" id="stockPlan1"></span><span class="real" id="stockReal1"></span></td>
-                <td><span class="planificado" id="stockPlan2"></span><span class="real" id="stockReal2"></span></td>
-                <td><span class="planificado" id="stockPlan3"></span><span class="real" id="stockReal3"></span></td>
-                <td><span class="planificado" id="stockPlan4"></span><span class="real" id="stockReal4"></span></td>
                 <td><span class="planificado" id="stockPlan5"></span><span class="real" id="stockReal5"></span></td>
                 <td><span class="planificado" id="stockPlan6"></span><span class="real" id="stockReal6"></span></td>
                 <td><span class="planificado" id="stockPlan7"></span><span class="real" id="stockReal7"></span></td>
@@ -258,6 +175,10 @@
                 <td><span class="planificado" id="stockPlan10"></span><span class="real" id="stockReal10"></span></td>
                 <td><span class="planificado" id="stockPlan11"></span><span class="real" id="stockReal11"></span></td>
                 <td><span class="planificado" id="stockPlan12"></span><span class="real" id="stockReal12"></span></td>
+                <td><span class="planificado" id="stockPlan1"></span><span class="real" id="stockReal1"></span></td>
+                <td><span class="planificado" id="stockPlan2"></span><span class="real" id="stockReal2"></span></td>
+                <td><span class="planificado" id="stockPlan3"></span><span class="real" id="stockReal3"></span></td>
+                <td><span class="planificado" id="stockPlan4"></span><span class="real" id="stockReal4"></span></td>
 
 
 
@@ -266,18 +187,18 @@
               <tr>
 
                 <td>Kg Prom.</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td><span class="planificado" id="kgPromPlan5"></span>0<span class="real" id="kgPromRReal5"></span></td>
+                <td><span class="planificado" id="kgPromPlan6"></span>0<span class="real" id="kgPromRReal6"></span></td>
+                <td><span class="planificado" id="kgPromPlan7"></span>0<span class="real" id="kgPromRReal7"></span></td>
+                <td><span class="planificado" id="kgPromPlan8"></span>0<span class="real" id="kgPromRReal8"></span></td>
+                <td><span class="planificado" id="kgPromPlan9"></span>0<span class="real" id="kgPromRReal9"></span></td>
+                <td><span class="planificado" id="kgPromPlan10"></span>0<span class="real" id="kgPromReal10"></span></td>
+                <td><span class="planificado" id="kgPromPlan11"></span>0<span class="real" id="kgPromReal11"></span></td>
+                <td><span class="planificado" id="kgPromPlan12"></span>0<span class="real" id="kgPromReal12"></span></td>
+                <td><span class="planificado" id="kgPromPlan1"></span>0<span class="real" id="kgPromRReal1"></span></td>
+                <td><span class="planificado" id="kgPromPlan2"></span>0<span class="real" id="kgPromRReal2"></span></td>
+                <td><span class="planificado" id="kgPromPlan3"></span>0<span class="real" id="kgPromRReal3"></span></td>
+                <td><span class="planificado" id="kgPromPlan4"></span>0<span class="real" id="kgPromRReal4"></span></td>
 
               </tr>
 
@@ -289,7 +210,7 @@
 
                 foreach ($meses as $key => $mes) { ?>
 
-                  <td><input class="form-control input-sm" type="text" name="adpv<?=$key?>" id="adpv<?=$key?>" value="0"></td>
+                  <td><input class="form-control input-sm" type="text" name="adpv[]" id="adpv<?=$key?>" value="0"></td>
 
                 <?php } 
 
@@ -315,7 +236,7 @@
 
                   foreach ($meses as $key => $mes) { ?>
 
-                  <td><input class="form-control input-sm" type="text" name="porcentMS<?=$key?>" id="porcentMS<?=$key?>" value="0"></td>
+                  <td><input class="form-control input-sm" type="text" name="porcentMS[]" id="porcentMS<?=$key?>" value="0"></td>
 
                   <?php } 
 

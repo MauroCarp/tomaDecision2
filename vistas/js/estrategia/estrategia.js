@@ -82,10 +82,88 @@ $('#dieta').on('change',function(){
     let dieta = $(this).find("option:selected").text();
     
     $('.dietaSeleccionada').each(function(){
-    
-        $(this).html(dieta)
+        
+        if(dieta != 'Seleccionar Dieta')
+            $(this).html(dieta)
+        else
+            $(this).html('-')
     
     })
+
+    let idDieta = $(this).val()
+
+    if(idDieta != ''){
+
+        $.ajax({
+            method:'POST',
+            url:'ajax/estrategia.ajax.php',
+            data:{accion:'verDieta',idDieta},
+            success:function(resp){
+    
+                let data =  JSON.parse(resp)
+                $('.insumosDieta').remove()
+                $('.stockInsumos').remove()
+
+                data.forEach(element => {
+                    
+                    let insumo = element.insumo
+
+                    $('#trStock').append($(`
+                        <th class="stockInsumos">${insumo}</th>
+                    `))
+                    $('#trStockInicial').append($(`
+                        <td class="stockInsumos"><input class="form-control" type="number" id="stockInsumo[]" value="0"></td>
+                    `))
+
+
+                    let tr = document.createElement('TR')
+                    tr.setAttribute('class','insumosDieta')
+
+                    let td = document.createElement('TD')
+                    td.setAttribute('style','border: 1px solid #f4f4f4;padding: 8px;box-sizing:border-boxvertical-align: top;')
+                    td.innerText = insumo
+                    tr.append(td)
+
+                    let input = document.createElement('INPUT')
+                    input.setAttribute('class','form-control input-sm')
+                    input.setAttribute('type','number')
+                    input.setAttribute('min','0')
+                    input.setAttribute('value','0')
+
+                    let i = 5;
+
+                    while (true) {
+
+                        let inputInsumo = input.cloneNode(true)
+                        inputInsumo.setAttribute('name',`insumo${element.idInsumo}[]`)
+                        
+                        let td = document.createElement('TD')
+                        td.setAttribute('style','border: 1px solid #f4f4f4;padding: 8px;box-sizing:border-boxvertical-align: top;')
+
+
+                        td.append(inputInsumo)
+                        tr.append(td)
+
+                        if (i === 12) {
+                            i = 1;  // Reinicia el índice a 1 después de llegar a 12
+                        } else if (i === 4) {
+                            break;  // Termina el bucle después de llegar a 4
+                        } else {
+                            i++;
+                        }
+
+                        $('#tbodyEstrategia').before(tr)
+                    }
+                    
+                });
+    
+            }
+    
+        })
+
+    } else {
+        $('.insumosDieta').remove()
+    }
 
 })
 
@@ -93,7 +171,7 @@ $('.btnCargaReal').on('click',function(){
     console.log($(this).attr('data-month'))
 })
 
-$('.selectInsumos').select2({
+$('select[name="insumo[]"]').select2({
     width:'100%'
 })
 
@@ -185,7 +263,7 @@ $('.table').on('click','.verDieta',function(){
         url:'ajax/estrategia.ajax.php',
         data:{accion:'verDieta',idDieta},
         success:function(resp){
-            console.log(resp)
+
             resp = JSON.parse(resp)
 
             let tr = []

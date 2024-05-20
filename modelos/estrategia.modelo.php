@@ -111,27 +111,49 @@ class ModeloEstrategia{
 
 		}
 		
-
-		$stmt -> close();
-
-		$stmt = null;
-
 	}
 
 
 	static public function mdlSetearCampania($tabla,$data){
 
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idDieta = :idDieta, stockSoja = :stockSoja , stockMaiz = :stockMaiz, stockSilo = :stockSilo, adpPlan = :adpPlan, msPlan = :msPlan, stockAnimales = :stockAnimales, seteado = 1 WHERE campania = :campania");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idDieta = :idDieta, stockInsumos = :stockInsumos, adpPlan = :adpPlan, msPlan = :msPlan, stockAnimales = :stockAnimales, seteado = 1 WHERE campania = :campania");
 
 		$stmt -> bindParam(":idDieta", $data['idDieta'], PDO::PARAM_STR);
-		$stmt -> bindParam(":stockSoja", $data['stockSoja'], PDO::PARAM_STR);
-		$stmt -> bindParam(":stockMaiz", $data['stockMaiz'], PDO::PARAM_STR);
-		$stmt -> bindParam(":stockSilo", $data['stockSilo'], PDO::PARAM_STR);
+		$stmt -> bindParam(":stockInsumos", $data['stockInsumos'], PDO::PARAM_STR);
 		$stmt -> bindParam(":adpPlan", $data['adp'], PDO::PARAM_STR);
 		$stmt -> bindParam(":msPlan", $data['msPorce'], PDO::PARAM_STR);
 		$stmt -> bindParam(":stockAnimales", $data['stockAnimales'], PDO::PARAM_STR);
 		$stmt -> bindParam(":campania", $data['campania'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+
+			$selectStmt = Conexion::conectar()->prepare("SELECT id FROM $tabla WHERE campania = :campania");
+			$selectStmt->bindParam(":campania", $data['campania'], PDO::PARAM_STR);
+			$selectStmt->execute();
+		
+			// Retornar los datos del registro actualizado
+			return $selectStmt->fetch(PDO::FETCH_ASSOC);
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
+	static public function mdlSetearAnimales($tabla,$data){
+
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET ingresosPlan = :ingresosPlan, kgIngresosPlan = :kgIngresosPlan, egresosPlan = :egresosPlan, kgEgresosPlan = :kgEgresosPlan, idEstrategia = :idEstrategia");
+
+		$stmt -> bindParam(":ingresosPlan", str_replace('"','',json_encode($data['ingresos'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgIngresosPlan", str_replace('"','',json_encode($data['kgIngresos'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":egresosPlan", str_replace('"','',json_encode($data['ventas'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgEgresosPlan", str_replace('"','',json_encode($data['kgVentas'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":idEstrategia", str_replace('"','',json_encode($data['idEstrategia'])), PDO::PARAM_STR);
 				
 		if($stmt -> execute()){
 		

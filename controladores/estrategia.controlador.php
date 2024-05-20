@@ -55,7 +55,7 @@ class ControladorEstrategia{
 
 		foreach (json_decode($respuesta['insumos']) as $key => $value) {
 			
-			$data[] = array('insumo'=>ControladorEstrategia::buscarInsumoPorId($value,$insumos),'porcentaje'=>$porcentajes[$key]);
+			$data[] = array('insumo'=>ControladorEstrategia::buscarInsumoPorId($value,$insumos),'idInsumo'=>$value,'porcentaje'=>$porcentajes[$key]);
 
 		}
 
@@ -93,18 +93,64 @@ class ControladorEstrategia{
 
 		if(isset($_POST['btnSetear'])){
 
-			$data = array('stockSoja'=>$_POST['stockSoja'],
-						  'stockSilo'=>$_POST['stockSilo'],
-						  'stockMaiz'=>$_POST['stockMaiz'],
+			$stockInsumos = array();
+			$ingresos = array();
+			$kgIngresos = array();
+			$ventas = array();
+			$kgVentas = array();
+
+			foreach ($_POST as $key => $value) {
+
+				if(strpos($key,'insumo') === 0){
+
+					$stockInsumos[str_replace('insumo','',$key)] = $value;		
+
+				}
+
+				if(strpos($key,'ingreso') === 0 AND strpos($key,'kg') !== 0){
+
+					$ingresos[str_replace('ingreso','',$key)] = $value;		
+
+				}
+
+				if(strpos($key,'kgIngreso') === 0){
+
+					$kgIngresos[str_replace('kgIngreso','',$key)] = $value;		
+
+				}
+
+				if(strpos($key,'venta') === 0 AND strpos($key,'kg') !== 0){
+
+					$ventas[str_replace('venta','',$key)] = $value;		
+
+				}
+
+				if(strpos($key,'kgVenta') === 0){
+
+					$kgVentas[str_replace('kgVenta','',$key)] = $value;		
+
+				}
+			}
+
+			$data = array('stockInsumos'=>str_replace('"','',json_encode($stockInsumos)),
 						  'stockAnimales'=>$_POST['stockAnimales'],
 						  'idDieta'=>$_POST['dieta'],
-						  'adp'=>$_POST['adpv5'],
-						  'msPorce'=>$_POST['porcentMS5'],
+						  'adp'=>$_POST['adpv'],
+						  'msPorce'=>$_POST['porcentMS'],
 						  'campania'=>$_POST['selectCampania']);
 
-			$actualizarCampania = ControladorEstrategia::ctrSetearCampania($data);
+			$idEstrategia = ControladorEstrategia::ctrSetearCampania($data);
+			
+			$dataAnimales = array('idEstrategia'=>$idEstrategia['id'],'ingresos'=>$ingresos,'kgIngresos'=>$kgIngresos,'ventas'=>$ventas,'kgVentas'=>$kgVentas);
 
-			if($actualizarCampania == 'ok'){
+			$setearAnimales = ControladorEstrategia::ctrSetearAnimales($dataAnimales);
+
+			var_dump($setearAnimales);
+			die;
+			// SETEAR MOVIMIENTOS DE CEREAL Y MOVIMIENTOS DE ANIMALES
+
+
+			if($idEstrategia == 'ok'){
 				echo'<script>
 
 				swal({
@@ -139,6 +185,14 @@ class ControladorEstrategia{
 
 	}
 
+	static public function ctrSetearAnimales($data){
+
+		$tabla = 'movimientosAnimales';
+
+		return ModeloEstrategia::mdlSetearAnimales($tabla,$data);
+
+	}
+
 	static public function ctrEliminarDieta($id){
 
 		$tabla = 'dietas';
@@ -156,7 +210,7 @@ class ControladorEstrategia{
 			$data = array('nombre'=>$_POST['nombreDieta'],'insumos'=>json_encode($_POST['insumo']),'porcentajes'=>json_encode($_POST['porcentajeInsumo']));
 
 			$respuesta = ModeloEstrategia::mdlNuevaDieta($tabla,$data);
-
+	
 			if($respuesta != 'ok'){
 
 				echo'<script>

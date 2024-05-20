@@ -41,38 +41,7 @@
               </thead>
 
               <tbody>
-                <tr class="monthRow">
-                  <td>Enero</td>
-                  <td><input class="form-control ingreso" type="number" name="" id="ingreso1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control venta" type="number" name="" id="venta1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
-                </tr>
-                <tr class="monthRow">
-                  <td>Febrero</td>
-                  <td><input class="form-control ingreso" type="number" name="" id="ingreso2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control venta" type="number" name="" id="venta2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
-                </tr>
-                <tr class="monthRow">
-                  <td>Marzo</td>
-                  <td><input class="form-control ingreso" type="number" name="" id="ingreso3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control venta" type="number" name="" id="venta3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
-                </tr>
-                <tr class="monthRow">
-                  <td>Abril</td>
-                  <td><input class="form-control ingreso" type="number" name="" id="ingreso4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control venta" type="number" name="" id="venta4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
-                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
-                </tr>
+                
                 <tr class="monthRow">
                   <td>Mayo</td>
                   <td><input class="form-control ingreso" type="number" name="" id="ingreso5" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
@@ -137,6 +106,39 @@
                   <td><input class="form-control kgVenta" type="number" name="" id="kgVenta12" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
                   <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
                 </tr>
+                <tr class="monthRow">
+                  <td>Enero</td>
+                  <td><input class="form-control ingreso" type="number" name="" id="ingreso1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control venta" type="number" name="" id="venta1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta1" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
+                </tr>
+                <tr class="monthRow">
+                  <td>Febrero</td>
+                  <td><input class="form-control ingreso" type="number" name="" id="ingreso2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control venta" type="number" name="" id="venta2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta2" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
+                </tr>
+                <tr class="monthRow">
+                  <td>Marzo</td>
+                  <td><input class="form-control ingreso" type="number" name="" id="ingreso3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control venta" type="number" name="" id="venta3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta3" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
+                </tr>
+                <tr class="monthRow">
+                  <td>Abril</td>
+                  <td><input class="form-control ingreso" type="number" name="" id="ingreso4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgIngreso" type="number" name="" id="kgIngreso4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control venta" type="number" name="" id="venta4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control kgVenta" type="number" name="" id="kgVenta4" min="0" value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
+                  <td><input class="form-control stock" type="text" name="" id=""  value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?> readOnly></td>
+                </tr>
+
                 <tr style="font-weight:bolder;">
                   <td><b>Total</b></td>
                   <td><input class="form-control total" type="text" name="" id="totalIngreso" readOnly value="0" <?=($data['estrategia']['seteado']) ? 'readOnly' : ''?>></td>
