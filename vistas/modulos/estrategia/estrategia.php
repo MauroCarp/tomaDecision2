@@ -117,7 +117,7 @@
                           
                 <?php foreach ($meses as $key => $mes) { ?>
                   
-                  <th><button type="button" class="btn btn-block btn-secondary btnCargaReal" data-toggle="modal" data-target="#modalCargarEstrategiaReal" data-month="<?=$mes?>" <?=(!$data['estrategia']['seteado']) ? 'disabled' : ''?>><?=$mes?></button></th>
+                  <th><button type="button" class="btn btn-block btn-secondary btnCargaReal" data-toggle="modal" data-target="#modalCargarEstrategiaReal" data-month="<?=$key?>" <?=(!$data['estrategia']['seteado']) ? 'disabled' : ''?>><?=$mes?></button></th>
 
                 <?php } ?> 
 
@@ -369,7 +369,70 @@
 
 <script>
 
+let calculateStockAndTotals = () => {
 
+  let stock = parseFloat($('#stockAnimales').val())
+
+  let ingresoTotal = 0
+  let kgIngresoTotal = 0
+  let ventaTotal = 0
+  let kgVentaTotal = 0
+
+  let index = 1
+
+  $('.monthRow').each(function(){
+      
+      let tr = $(this)[0].childNodes
+
+      let tdIng = tr[3].childNodes
+      let ingreso = parseFloat(tdIng[0].value)
+
+      let tdVenta = tr[7].childNodes
+      let venta = parseFloat(tdVenta[0].value)
+
+      let tdKgVenta = tr[9].childNodes
+      let kgVenta = parseFloat(tdKgVenta[0].value)
+
+      let tdKgIngreso = tr[5].childNodes
+      let kgIngreso = parseFloat(tdKgIngreso[0].value)
+
+      stock += (parseFloat(ingreso) - parseFloat(venta))
+
+      let tdStock = tr[11].childNodes
+      tdStock[0].value = stock
+
+      ingresoTotal += ingreso
+      ventaTotal += venta
+      kgIngresoTotal += kgIngreso
+      kgVentaTotal += kgVenta
+
+      $(`#ingPlan${index}`).html(ingreso)
+      $(`#ventaPlan${index}`).html(venta)
+      $(`#stockPlan${index}`).html(stock)
+      $(`#stockPlan${index}`).html(stock)
+
+      $(`input[name='ingreso${index}']`).val(ingreso)
+      $(`input[name='kgIngreso${index}']`).val(kgIngreso)
+      $(`input[name='venta${index}']`).val(venta)
+      $(`input[name='kgVenta${index}']`).val(kgVenta)
+
+      index++
+
+  });
+
+  $('#totalStock').val(stock)
+  $('#totalIngreso').val(ingresoTotal)
+  $('#totalKgIngreso').val(kgIngresoTotal)
+  $('#totalVenta').val(ventaTotal)
+  $('#totalKgVenta').val(kgVentaTotal)
+
+  $('#avgIngreso').val((ingresoTotal / 12).toFixed(2))
+  $('#avgKgIngreso').val((kgIngresoTotal / 12).toFixed(2))
+  $('#avgVenta').val((ventaTotal / 12).toFixed(2))
+  $('#avgKgVenta').val((kgVentaTotal / 12).toFixed(2))
+
+
+}
 
 let seteado = '<?=$data['estrategia']['seteado']?>'
 
@@ -388,51 +451,108 @@ if(seteado){
 
       dataEstrategia = data.estrategia
       console.log(dataEstrategia)
-      // trStockInicial
+
+      // CARGO STOCK ANIMALES
+
       $('#stockAnimales').val(data.estrategia.stockAnimales)
 
       let stockInsumos = JSON.parse(dataEstrategia.stockInsumos)
 
-      let newObj = {};
+      // CARGA STOCK INSUMOS 
 
-      // Lista de las nuevas propiedades
-      let newProperties = ['1', '2', '3'];
+      let index = 0
 
-      // Convertir las claves del objeto original en un array y recorrerlo
-      Object.keys(stockInsumos).forEach((key, index) => {
-          // Asignar el valor del objeto original al nuevo objeto con la nueva clave
-          newObj[newProperties[index]] = stockInsumos[key];
+      let insumosName =  Object.keys(dataEstrategia.compraInsumos)
+      let insumosNameId = {}
 
-      });
+      for (const key in stockInsumos) {
+        insumosNameId[insumosName[index]] = key
+        index++
+      }
 
+      let cerealesPlan = JSON.parse(dataEstrategia.cerealesPlan)
 
-      let index = 1
+      index = 0
 
-      for (const key in dataEstrategia.compraInsumos) {
-        console.log('hola')
+      for (const key in insumosNameId) {
+
           $('#trStock').append($(`<th>${key}</th>`))
-          $('#trStockInicial').append($(`<td><input class="form-control stockInicial" type="number" value="${newObj[1]}" readOnly></td>`))
+          $('#trStockInicial').append($(`<td><input class="form-control stockInicial" type="number" min="0" value="${stockInsumos[index]}" readOnly></td>`))
+
+          $('#insumosReal').append($(`<div class="col-sm-4">
+
+                                        <div class="form-group">
+                                          <label>Ingreso ${key}</label>
+                                          <input type="number" min="0" class="form-control real" name="insumoReal${insumosNameId[key]}" value="0">
+                                        </div>
+
+                                      </div>`))
+
+          $('#dietaReal').append($(`<div class="col-sm-4">
+
+                                        <div class="form-group">
+                                          <label>% ${key}</label>
+                                          <input type="number" min="0" class="form-control real" name="dietaReal${insumosNameId[key]}" value="0">
+                                        </div>
+
+                                      </div>`))
+
+
+          Object.keys(cerealesPlan).forEach(element => {
+            console.log(element)
+          });
+
+          // $('#tbodyEstrategia').prepend($(``))
+
+
 
           index++
-      }
+      } 
       
 
+      // CARGAR STOCK/INGRESOS/EGRESOS/KG INGRESOS/KG EGRESOS ANIMALES
+
       let ingresosPlan = JSON.parse(dataEstrategia.ingresosPlan)
-      let egresosPlan = JSON.parse(dataEstrategia.ingresosPlan)
-
+      let egresosPlan = JSON.parse(dataEstrategia.egresosPlan)
+      let kgIngresosPlan = JSON.parse(dataEstrategia.kgIngresosPlan)
+      let kgEgresosPlan = JSON.parse(dataEstrategia.kgEgresosPlan)
       let stock = Number($('#stockAnimales').val())
+  
+      let i = 5
 
-      Object.keys(ingresosPlan).forEach((key, index) => {
+      Object.keys(ingresosPlan).forEach((key) => {
 
         if(egresosPlan[key] > 0){
-          stock += Number(ingresosPlan[key]) - Number(egresosPlan[key])
+
+          stock += (Number(ingresosPlan[key]) - Number(egresosPlan[key]))
+
         }else{
-          stock += Number(ingresosPlan)
+
+          stock += Number(ingresosPlan[key])
+
         }
 
-        $(`#stockPlan${key}`).html(stock)
+        $(`#stockPlan${i}`).html(stock)
+
+        $(`#ingreso${i}`).val(ingresosPlan[key])
+        $(`#venta${i}`).val(egresosPlan[key])
+        $(`#kgIngreso${i}`).val(kgIngresosPlan[key])
+        $(`#kgVenta${i}`).val(kgEgresosPlan[key])
+
+        calculateStockAndTotals()
+
+        if (i === 12) {
+            i = 1;
+        } else if (i === 4) {
+            return;
+        } else {
+            i++;
+        }
+      
+
       })
 
+      //CARGAR INSUMOS EN CARGA REAL
 
     }
   })

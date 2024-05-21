@@ -4,7 +4,7 @@
 
     <div class="modal-content">
 
-      <form role="form" method="post" enctype="multipart/form-data" id="formCarga">
+      <form role="form" method="post" id="formCarga">
 
         <!--=====================================
         CABEZA DEL MODAL
@@ -26,35 +26,10 @@
 
           <div class="box-body">
 
-          <div class="row">
-            
-            <div class="col-sm-4">
+          <input type="hidden" class="form-control real" id="monthReal" name="month">
+          <input type="hidden" class="form-control" name="campaniaReal" value="<?=$campania['campania']?>">
 
-              <div class="form-group">
-                <label>Ingreso Silo</label>
-                <input type="text" class="form-control">
-              </div>
-              
-            </div>
-
-            <div class="col-sm-4">
-
-              <div class="form-group">
-                <label>Ingreso Maiz</label>
-                <input type="text" class="form-control">
-              </div>
-              
-            </div>
-
-            <div class="col-sm-4">
-
-              <div class="form-group">
-                <label>Ingreso Soja</label>
-                <input type="text" class="form-control">
-              </div>
-              
-            </div>
-
+          <div class="row" id="insumosReal">
           </div>
 
           <div class="row">
@@ -65,7 +40,7 @@
 
                 <label>Cantidad Ing.</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="ingresosReal" value="0">
 
               </div>
 
@@ -77,7 +52,7 @@
 
                 <label>Kg Ing.</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="kgIngresosReal" value="0">
 
               </div>
 
@@ -89,7 +64,7 @@
 
                 <label>ADP</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="adpReal" value="0">
 
               </div>
 
@@ -105,7 +80,7 @@
 
                 <label>Cantidad Egr.</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="ventasReal" value="0">
 
               </div>
 
@@ -117,7 +92,7 @@
 
                 <label>Kg Egr.</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="kgVentasReal" value="0">
 
               </div>
 
@@ -129,7 +104,7 @@
 
                 <label>% Cons. MS</label>
 
-                <input type="text" class="form-control">
+                <input type="number" min="0" step="0.1" class="form-control real" name="msReal" value="0">
 
               </div>
 
@@ -141,43 +116,7 @@
 
           <h3>Dieta</h3>
 
-          <div class="row">
-
-            <div class="col-sm-4">
-
-              <div class="form-group">
-
-                <label>% Silo</label>
-
-                <input type="text" class="form-control">
-
-              </div>
-
-            </div>
-
-            <div class="col-sm-4">
-
-              <div class="form-group">
-
-                <label>% Maiz</label>
-
-                <input type="text" class="form-control">
-
-              </div>
-
-            </div>
-
-            <div class="col-sm-4">
-
-              <div class="form-group">
-
-                <label>% Soja</label>
-
-                <input type="text" class="form-control">
-
-              </div>
-
-            </div>
+          <div class="row" id="dietaReal">
 
           </div>
           
@@ -193,7 +132,7 @@
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary" id="btnCargar" name="btnCargar">Cargar</button>
+          <button type="submit" class="btn btn-primary" id="btnCargaReal" name="btnCargaReal">Cargar</button>
 
         </div>
 
@@ -207,9 +146,9 @@
 
 <?php
 
-// $cargarArchivo = new ControladorEstrategia();
+$cargarReal = new ControladorEstrategia();
 
-// $cargarArchivo->ctrCargarArchivo();
+$cargarReal->ctrCargaReal();
 
 
 ?>

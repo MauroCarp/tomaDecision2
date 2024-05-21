@@ -71,32 +71,21 @@ class ControladorEstrategia{
 		
 		$insumos = ControladorEstrategia::ctrMostrarInsumos();
 
+		$arr_cerealesPlan = json_decode($respuesta['cerealesPlan'],true);
 
-		foreach (json_decode($respuesta['cerealesPlan']) as $key => $value) {
+		ksort($arr_cerealesPlan);
+
+		foreach ($arr_cerealesPlan as $key => $value) {
 
 			$insumoCompra = ControladorEstrategia::buscarInsumoPorId($key,$insumos);
-			// var_dump(ControladorEstrategia::buscarInsumoPorId($key,$insumos));
+
 			$respuesta['compraInsumos'][$insumoCompra] = $value;
 
 		}
-
+	
 		$campanias = ModeloEstrategia::mdlMostrarEstrategia($tabla,'campanias');
 
 		return array('estrategia'=>$respuesta,'campanias'=>$campanias);
-
-	}
-    
-	/*=============================================
-	MOSTRAR DATOS ANUAL
-	=============================================*/
-
-	static public function ctrMostrarDatosAnual($item, $anios){
-
-		$tabla = "conversion";
-
-		$respuesta = ModeloConversion::mdlMostrarDatosAnual($tabla, $item, $anios);
-
-		return $respuesta;
 
 	}
 
@@ -275,6 +264,117 @@ class ControladorEstrategia{
 		
 
 	}
+
+	static public function ctrCargaReal(){
+
+		if(isset($_POST['btnCargaReal'])){
+		
+			$campania = $_POST['campania'];
+			$month = $_POST['month'];
+			$dataEstrategia = ControladorEstrategia::ctrMostrarEstrategia($campania);
+
+			var_dump($_POST);
+die;
+			
+			// if(!is_null($dataEstrategia['estrategia']['msReal'])){
+
+			// 	$msReal = json_decode($dataEstrategia['estrategia']['msReal']);
+			// 	$msReal[$month] = $_POST['msReal'];
+				
+			// } else { 
+				
+			// 	$msReal = array($month=> $_POST['msReal']);
+
+			// }
+
+			// if(!is_null($dataEstrategia['estrategia']['adpReal'])){
+
+			// 	$adpReal = json_decode($dataEstrategia['estrategia']['adpReal']);
+			// 	$adpReal[$month] = $_POST['adpReal'];
+				
+			// } else { 
+				
+			// 	$adpReal = array($month=> $_POST['adpReal']);
+
+			// }
+
+			// if(!is_null($dataEstrategia['estrategia']['ingresosReal'])){
+			// 	$ingresosReal = json_decode($dataEstrategia['estrategia']['ingresosReal']);
+			// 	$ingresosReal[$month] = $_POST['ingresosReal'];
+				
+			// } else { 
+				
+			// 	$ingresosReal = array($month=> $_POST['ingresoReal']);
+				
+			// }
+
+			// if(!is_null($dataEstrategia['estrategia']['kgIngresoReal'])){
+
+			// 	$kgIngresoReal = json_decode($dataEstrategia['estrategia']['kgIngresoReal']);
+			// 	$kgIngresoReal[$month] = $_POST['kgIngresoReal'];
+				
+			// } else { 
+				
+			// 	$kgIngresoReal = array($month=> $_POST['kgIngresoReal']);
+
+			// }
+
+			// if(!is_null($dataEstrategia['estrategia']['egresosReal'])){
+
+			// 	$ventasReal = json_decode($dataEstrategia['estrategia']['egresosReal']);
+			// 	$ventasReal[$month] = $_POST['ventasReal'];
+				
+			// } else { 
+
+			// 	$ventasReal = array($month=> $_POST['ventasReal']);
+
+			// }
+		
+			// if(!is_null($dataEstrategia['estrategia']['kgEgresosReal'])){
+
+			// 	$kgVentasReal = json_decode($dataEstrategia['estrategia']['kgEgresosReal']);
+			// 	$kgVentasReal[$month] = $_POST['kgVentasReal'];
+				
+			// } else { 
+				
+			// 	$kgVentasReal = array($month=> $_POST['kgVentasReal']);
+
+			// }
+
+			$dataKeys = ['msReal', 'adpReal', 'ingresosReal', 'kgIngresosReal', 'ventasReal', 'kgVentasReal'];
+			$data = [];
+
+			foreach ($dataKeys as $key) {
+
+				if (!is_null($dataEstrategia['estrategia'][$key])) {
+					$data[$key] = json_decode($dataEstrategia['estrategia'][$key], true);
+				} else {
+					$data[$key] = [];
+				}
+
+				$data[$key][$month] = $_POST[$key];
+
+			}
+
+			foreach ($_POST as $key => $value) {
+
+				if(strpos($key,'dietaReal') === 0){
+					var_dump($key);
+
+					$index = str_replace('dietaReal','',$key);
+					var_dump($index);
+					$data['dietaReal'][$month][$index] = $value;
+				}
+
+			}
+	
+			var_dump($data);
+			die;
+			
+		}
+
+	}
+
 
 }
 	

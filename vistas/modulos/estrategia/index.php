@@ -70,7 +70,4 @@ include 'vistas/modulos/modales/estrategia/stock.modal.php';
 
 include 'vistas/modulos/modales/estrategia/cargaCampania.modal.php';
 
-
-$campaniaAgro = isset($_COOKIE['campaniaAgro']) ? true : false;
-
 ?>
