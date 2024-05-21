@@ -68,7 +68,18 @@ class ControladorEstrategia{
 		$tabla = "estrategias";
 
 		$respuesta = ModeloEstrategia::mdlMostrarEstrategia($tabla,$campania);
-	
+		
+		$insumos = ControladorEstrategia::ctrMostrarInsumos();
+
+
+		foreach (json_decode($respuesta['cerealesPlan']) as $key => $value) {
+
+			$insumoCompra = ControladorEstrategia::buscarInsumoPorId($key,$insumos);
+			// var_dump(ControladorEstrategia::buscarInsumoPorId($key,$insumos));
+			$respuesta['compraInsumos'][$insumoCompra] = $value;
+
+		}
+
 		$campanias = ModeloEstrategia::mdlMostrarEstrategia($tabla,'campanias');
 
 		return array('estrategia'=>$respuesta,'campanias'=>$campanias);
@@ -92,7 +103,7 @@ class ControladorEstrategia{
 	static public function ctrSetearEstrategia(){
 
 		if(isset($_POST['btnSetear'])){
-
+		
 			$ingresos = array();
 			$kgIngresos = array();
 			$ventas = array();
@@ -132,7 +143,7 @@ class ControladorEstrategia{
 				}
 			}
 
-			$data = array('stockInsumos'=>$_POST['stockInsumos'],
+			$data = array('stockInsumos'=>json_encode($_POST['stockInsumos']),
 						  'stockAnimales'=>$_POST['stockAnimales'],
 						  'idDieta'=>$_POST['dieta'],
 						  'adp'=>$_POST['adpv'],
@@ -168,7 +179,7 @@ class ControladorEstrategia{
 				</script>';
 			}else{
 
-				var_dump($actualizarCampania);
+				var_dump($idEstrategia);
 				die;
 			}
 

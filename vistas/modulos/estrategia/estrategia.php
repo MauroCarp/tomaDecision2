@@ -128,38 +128,30 @@
             <tbody id="tbodyEstrategia">
 
               <tr>
-
+              
                 <td>Ingresos</td>
-                <td><span class="planificado" id="ingPlan5"></span><span class="real" id="ingReal5"></span></td>
-                <td><span class="planificado" id="ingPlan6"></span><span class="real" id="ingReal6"></span></td>
-                <td><span class="planificado" id="ingPlan7"></span><span class="real" id="ingReal7"></span></td>
-                <td><span class="planificado" id="ingPlan8"></span><span class="real" id="ingReal8"></span></td>
-                <td><span class="planificado" id="ingPlan9"></span><span class="real" id="ingReal9"></span></td>
-                <td><span class="planificado" id="ingPlan10"></span><span class="real" id="ingReal10"></span></td>
-                <td><span class="planificado" id="ingPlan11"></span><span class="real" id="ingReal11"></span></td>
-                <td><span class="planificado" id="ingPlan12"></span><span class="real" id="ingReal12"></span></td>
-                <td><span class="planificado" id="ingPlan1"></span><span class="real" id="ingReal1"></span></td>
-                <td><span class="planificado" id="ingPlan2"></span><span class="real" id="ingReal2"></span></td>
-                <td><span class="planificado" id="ingPlan3"></span><span class="real" id="ingReal3"></span></td>
-                <td><span class="planificado" id="ingPlan4"></span><span class="real" id="ingReal4"></span></td>
+
+                <?php
+
+                foreach (json_decode($data['estrategia']['ingresosPlan']) as $key => $value) { ?>
+
+                <td><span class="planificado"><?=$value?></span><span class="real" id='ingReal<?=$key?>'></span></td>
+
+                <?php } ?>
                 
               </tr>
 
               <tr>
 
                 <td>Egresos</td>
-                <td><span class="planificado" id="ventaPlan5"></span><span class="real" id="ventaReal5"></span></td>
-                <td><span class="planificado" id="ventaPlan6"></span><span class="real" id="ventaReal6"></span></td>
-                <td><span class="planificado" id="ventaPlan7"></span><span class="real" id="ventaReal7"></span></td>
-                <td><span class="planificado" id="ventaPlan8"></span><span class="real" id="ventaReal8"></span></td>
-                <td><span class="planificado" id="ventaPlan9"></span><span class="real" id="ventaReal9"></span></td>
-                <td><span class="planificado" id="ventaPlan10"></span><span class="real" id="ventaReal10"></span></td>
-                <td><span class="planificado" id="ventaPlan11"></span><span class="real" id="ventaReal11"></span></td>
-                <td><span class="planificado" id="ventaPlan12"></span><span class="real" id="ventaReal12"></span></td>
-                <td><span class="planificado" id="ventaPlan1"></span><span class="real" id="ventaReal1"></span></td>
-                <td><span class="planificado" id="ventaPlan2"></span><span class="real" id="ventaReal2"></span></td>
-                <td><span class="planificado" id="ventaPlan3"></span><span class="real" id="ventaReal3"></span></td>
-                <td><span class="planificado" id="ventaPlan4"></span><span class="real" id="ventaReal4"></span></td>
+
+                <?php
+
+                foreach (json_decode($data['estrategia']['egresosPlan']) as $key => $value) { ?>
+
+                <td><span class="planificado"><?=$value?></span><span class="real" id='egrReal<?=$key?>'></span></td>
+
+                <?php } ?>
                 
 
               </tr>
@@ -215,16 +207,13 @@
                 <?php } 
 
                 } else {
+             
+                    foreach (json_decode($data['estrategia']['adpPlan']) as $key => $value) { ?>
 
-                  foreach ($meses as $key => $mes) { ?>
-
-                  <td>
-                    <span class="planificado"><?=$data['estrategia']['adpPlan']?></span><span class="real"><?php echo ' | ' . $data['estrategia']['adpReal']?></span>
-                    </td>
+                      <td><span class="planificado"><?=$value?></span><span class="real"></span></td>
+                      
                     <?php } 
-
-
-                } ?> 
+                } ?>
 
               </tr>
           
@@ -242,10 +231,10 @@
 
                 } else {
 
-                  foreach ($meses as $key => $mes) { ?>
+                  foreach (json_decode($data['estrategia']['msPlan']) as $key => $value) { ?>
 
-                  <td><span class="planificado"><?=$data['estrategia']['msPlan']?></span><span class="real"><?php echo ' | ' . $data['estrategia']['msReal']?></span<</td>
-
+                    <td><span class="planificado"><?=$value?></span><span class="real"></span></td>
+                    
                   <?php } 
 
 
@@ -283,7 +272,7 @@
 
                     if($data['estrategia']['seteado']){ ?>
 
-                      <td><?=$data['estrategia']['idDieta']?></td>
+                      <td><?=$data['estrategia']['nombre']?></td>
 
                   <?php
 
@@ -377,6 +366,80 @@
   </div>
 
 </div>
+
+<script>
+
+
+
+let seteado = '<?=$data['estrategia']['seteado']?>'
+
+
+if(seteado){
+
+  let campania = '<?=$data['estrategia']['campania']?>'
+
+  $.ajax({
+    method:'post',
+    url:'ajax/estrategia.ajax.php',
+    data:{accion:'mostrarEstrategia',campania},
+    success:function(resp){
+
+      let data = JSON.parse(resp)
+
+      dataEstrategia = data.estrategia
+      console.log(dataEstrategia)
+      // trStockInicial
+      $('#stockAnimales').val(data.estrategia.stockAnimales)
+
+      let stockInsumos = JSON.parse(dataEstrategia.stockInsumos)
+
+      let newObj = {};
+
+      // Lista de las nuevas propiedades
+      let newProperties = ['1', '2', '3'];
+
+      // Convertir las claves del objeto original en un array y recorrerlo
+      Object.keys(stockInsumos).forEach((key, index) => {
+          // Asignar el valor del objeto original al nuevo objeto con la nueva clave
+          newObj[newProperties[index]] = stockInsumos[key];
+
+      });
+
+
+      let index = 1
+
+      for (const key in dataEstrategia.compraInsumos) {
+        console.log('hola')
+          $('#trStock').append($(`<th>${key}</th>`))
+          $('#trStockInicial').append($(`<td><input class="form-control stockInicial" type="number" value="${newObj[1]}" readOnly></td>`))
+
+          index++
+      }
+      
+
+      let ingresosPlan = JSON.parse(dataEstrategia.ingresosPlan)
+      let egresosPlan = JSON.parse(dataEstrategia.ingresosPlan)
+
+      let stock = Number($('#stockAnimales').val())
+
+      Object.keys(ingresosPlan).forEach((key, index) => {
+
+        if(egresosPlan[key] > 0){
+          stock += Number(ingresosPlan[key]) - Number(egresosPlan[key])
+        }else{
+          stock += Number(ingresosPlan)
+        }
+
+        $(`#stockPlan${key}`).html(stock)
+      })
+
+
+    }
+  })
+}
+        
+
+</script>
 
 <?php
 

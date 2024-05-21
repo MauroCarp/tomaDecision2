@@ -69,12 +69,21 @@ class ModeloEstrategia{
 
 			if($campania != null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT *, dietas.nombre FROM $tabla INNER JOIN movimientosCereales mc ON $tabla.id = mc.idEstrategia INNER JOIN movimientosAnimales ma ON $tabla.id = ma.idEstrategia INNER JOIN dietas ON $tabla.idDieta = dietas.id WHERE $tabla.campania = :campania");
-			$stmt -> bindParam(":campania", $campania, PDO::PARAM_STR);
-				
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla 
+													INNER JOIN movimientoscereales mc ON $tabla.id = mc.idEstrategia 
+													INNER JOIN movimientosanimales ma ON $tabla.id = ma.idEstrategia 
+													INNER JOIN dietas ON $tabla.idDieta = dietas.id 
+													WHERE $tabla.campania = :campania");
+
+				$stmt -> bindParam(":campania", $campania, PDO::PARAM_STR);
+					
 			} else {
-				
-				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla where id = (select MAX(id) from $tabla)");
+
+				$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla 
+				INNER JOIN movimientoscereales mc ON $tabla.id = mc.idEstrategia 
+				INNER JOIN movimientosanimales ma ON $tabla.id = ma.idEstrategia 
+				INNER JOIN dietas ON $tabla.idDieta = dietas.id 
+				WHERE $tabla.id = (select MAX($tabla.id) from $tabla)");
 
 			}
 
@@ -120,9 +129,9 @@ class ModeloEstrategia{
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET idDieta = :idDieta, stockInsumos = :stockInsumos, adpPlan = :adpPlan, msPlan = :msPlan, stockAnimales = :stockAnimales, seteado = 1 WHERE campania = :campania");
 
 		$stmt -> bindParam(":idDieta", $data['idDieta'], PDO::PARAM_STR);
-		$stmt -> bindParam(":stockInsumos", str_replace('"','',json_encode($data['stockInsumos'])), PDO::PARAM_STR);
-		$stmt -> bindParam(":adpPlan", str_replace('"','',json_encode($data['adp'])), PDO::PARAM_STR);
-		$stmt -> bindParam(":msPlan", str_replace('"','',json_encode($data['msPorce'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":stockInsumos", json_encode($data['stockInsumos']), PDO::PARAM_STR);
+		$stmt -> bindParam(":adpPlan", json_encode($data['adp']), PDO::PARAM_STR);
+		$stmt -> bindParam(":msPlan", json_encode($data['msPorce']), PDO::PARAM_STR);
 		$stmt -> bindParam(":stockAnimales", $data['stockAnimales'], PDO::PARAM_STR);
 		$stmt -> bindParam(":campania", $data['campania'], PDO::PARAM_STR);
 				
@@ -150,10 +159,10 @@ class ModeloEstrategia{
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(ingresosPlan, kgIngresosPlan, egresosPlan, kgEgresosPlan, idEstrategia) VALUES(:ingresosPlan, :kgIngresosPlan, :egresosPlan, :kgEgresosPlan,:idEstrategia)");
 
 
-		$stmt -> bindParam(":ingresosPlan", str_replace('"','',json_encode($data['ingresos'])), PDO::PARAM_STR);
-		$stmt -> bindParam(":kgIngresosPlan", str_replace('"','',json_encode($data['kgIngresos'])), PDO::PARAM_STR);
-		$stmt -> bindParam(":egresosPlan", str_replace('"','',json_encode($data['ventas'])), PDO::PARAM_STR);
-		$stmt -> bindParam(":kgEgresosPlan", str_replace('"','',json_encode($data['kgVentas'])), PDO::PARAM_STR);
+		$stmt -> bindParam(":ingresosPlan", json_encode($data['ingresos']), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgIngresosPlan", json_encode($data['kgIngresos']), PDO::PARAM_STR);
+		$stmt -> bindParam(":egresosPlan", json_encode($data['ventas']), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgEgresosPlan", json_encode($data['kgVentas']), PDO::PARAM_STR);
 		$stmt -> bindParam(":idEstrategia", $data['idEstrategia'], PDO::PARAM_STR);
 				
 		if($stmt -> execute()){
@@ -214,8 +223,8 @@ class ModeloEstrategia{
 		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre,insumos,porcentajes) VALUES(:nombre,:insumos,:porcentajes)");
 
 		$stmt -> bindParam(":nombre", $data['nombre'], PDO::PARAM_STR);
-		$stmt -> bindParam(":insumos", str_replace('"','',$data['insumos']), PDO::PARAM_STR);
-		$stmt -> bindParam(":porcentajes", str_replace('"','',$data['porcentajes']), PDO::PARAM_STR);
+		$stmt -> bindParam(":insumos", $data['insumos'], PDO::PARAM_STR);
+		$stmt -> bindParam(":porcentajes", $data['porcentajes'], PDO::PARAM_STR);
 				
 		if($stmt -> execute()){
 		

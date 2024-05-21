@@ -10,6 +10,7 @@ class AjaxEstrategia{
 	=============================================*/	
 
     public $idDieta;
+    public $campania;
 
 	public function ajaxGenerarOptionInsumos(){
 
@@ -36,6 +37,16 @@ class AjaxEstrategia{
 		$respuesta = ControladorEstrategia::ctrEliminarDieta($idDieta);
 
 		echo $respuesta;
+
+	}
+
+	public function ajaxMostrarEstrategia(){
+
+        $campania = $this->campania;
+
+		$respuesta = ControladorEstrategia::ctrMostrarEstrategia($campania);
+
+		echo json_encode($respuesta);
 
 	}
     
@@ -70,6 +81,14 @@ if(isset($_POST["accion"])){
 		$mostrarDieta = new AjaxEstrategia();
         $mostrarDieta ->idDieta = $_POST['idDieta'];
         $mostrarDieta ->ajaxEliminarDieta();
+
+    }
+	
+	if($accion == 'mostrarEstrategia'){
+
+		$mostrarDieta = new AjaxEstrategia();
+        $mostrarDieta ->campania = $_POST['campania'];
+        $mostrarDieta ->ajaxMostrarEstrategia();
 
     }
 
