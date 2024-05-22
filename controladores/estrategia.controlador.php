@@ -273,74 +273,6 @@ class ControladorEstrategia{
 			$month = $_POST['month'];
 			$dataEstrategia = ControladorEstrategia::ctrMostrarEstrategia($campania);
 
-			var_dump($_POST);
-die;
-			
-			// if(!is_null($dataEstrategia['estrategia']['msReal'])){
-
-			// 	$msReal = json_decode($dataEstrategia['estrategia']['msReal']);
-			// 	$msReal[$month] = $_POST['msReal'];
-				
-			// } else { 
-				
-			// 	$msReal = array($month=> $_POST['msReal']);
-
-			// }
-
-			// if(!is_null($dataEstrategia['estrategia']['adpReal'])){
-
-			// 	$adpReal = json_decode($dataEstrategia['estrategia']['adpReal']);
-			// 	$adpReal[$month] = $_POST['adpReal'];
-				
-			// } else { 
-				
-			// 	$adpReal = array($month=> $_POST['adpReal']);
-
-			// }
-
-			// if(!is_null($dataEstrategia['estrategia']['ingresosReal'])){
-			// 	$ingresosReal = json_decode($dataEstrategia['estrategia']['ingresosReal']);
-			// 	$ingresosReal[$month] = $_POST['ingresosReal'];
-				
-			// } else { 
-				
-			// 	$ingresosReal = array($month=> $_POST['ingresoReal']);
-				
-			// }
-
-			// if(!is_null($dataEstrategia['estrategia']['kgIngresoReal'])){
-
-			// 	$kgIngresoReal = json_decode($dataEstrategia['estrategia']['kgIngresoReal']);
-			// 	$kgIngresoReal[$month] = $_POST['kgIngresoReal'];
-				
-			// } else { 
-				
-			// 	$kgIngresoReal = array($month=> $_POST['kgIngresoReal']);
-
-			// }
-
-			// if(!is_null($dataEstrategia['estrategia']['egresosReal'])){
-
-			// 	$ventasReal = json_decode($dataEstrategia['estrategia']['egresosReal']);
-			// 	$ventasReal[$month] = $_POST['ventasReal'];
-				
-			// } else { 
-
-			// 	$ventasReal = array($month=> $_POST['ventasReal']);
-
-			// }
-		
-			// if(!is_null($dataEstrategia['estrategia']['kgEgresosReal'])){
-
-			// 	$kgVentasReal = json_decode($dataEstrategia['estrategia']['kgEgresosReal']);
-			// 	$kgVentasReal[$month] = $_POST['kgVentasReal'];
-				
-			// } else { 
-				
-			// 	$kgVentasReal = array($month=> $_POST['kgVentasReal']);
-
-			// }
-
 			$dataKeys = ['msReal', 'adpReal', 'ingresosReal', 'kgIngresosReal', 'ventasReal', 'kgVentasReal'];
 			$data = [];
 
@@ -359,17 +291,34 @@ die;
 			foreach ($_POST as $key => $value) {
 
 				if(strpos($key,'dietaReal') === 0){
-					var_dump($key);
 
 					$index = str_replace('dietaReal','',$key);
-					var_dump($index);
 					$data['dietaReal'][$month][$index] = $value;
+
 				}
+	
+				if(strpos($key,'insumoReal') === 0){
+
+					$index = str_replace('insumoReal','',$key);
+
+
+					$data['cerealesReal'][$month][$index] = $value;
+
+				}
+
+
 
 			}
 	
-			var_dump($data);
+			$data['idEstrategia'] = $dataEstrategia['estrategia']['id'];
+			$estrategiaReal = ModeloEstrategia::mdlEstrategiaReal('estrategias',$data);
+			$cerealesReal = ModeloEstrategia::mdlInsumosReal('movimientoscereales',$data,'cerealesReal');
+			$animalesReal = ModeloEstrategia::mdlAnimalesReal('movimientosanimales',$data);
+			var_dump($animalesReal);
+
 			die;
+
+
 			
 		}
 

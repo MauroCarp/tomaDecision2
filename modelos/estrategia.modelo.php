@@ -239,4 +239,74 @@ class ModeloEstrategia{
 
 	}
 
+	static public function mdlInsumosReal($tabla,$data){
+
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET cerealesReal = :cerealesReal WHERE idEstrategia = :idEstrategia");
+
+		$stmt -> bindParam(":cerealesReal", json_encode($data['cerealesReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":idEstrategia", $data['idEstrategia'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			// Retornar los datos del registro actualizado
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
+	static public function mdlEstrategiaReal($tabla,$data){
+
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET dietaReal = :dietaReal, adpReal = :adpReal, msReal = :msReal WHERE id = :id");
+
+		$stmt -> bindParam(":dietaReal", json_encode($data['dietaReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":adpReal", json_encode($data['adpReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":msReal", json_encode($data['msReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":id", $data['idEstrategia'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			// Retornar los datos del registro actualizado
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
+	static public function mdlAnimalesReal($tabla,$data){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET ingresosReal = :ingresosReal, kgIngresosReal = :kgIngresosReal, ventasReal = :ventasReal, kgVentasReal = :kgVentasReal WHERE idEstrategia = :idEstrategia");
+
+		$stmt -> bindParam(":ingresosReal", json_encode($data['ingresosReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgIngresosReal", json_encode($data['kgIngresosReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":ventasReal", json_encode($data['ventasReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":kgVentasReal", json_encode($data['kgVentasReal']), PDO::PARAM_STR);
+		$stmt -> bindParam(":idEstrategia", $data['idEstrategia'], PDO::PARAM_STR);
+				
+		if($stmt -> execute()){
+		
+			// Retornar los datos del registro actualizado
+			return 'ok';
+		
+		}else{
+
+			return $stmt->errorInfo();
+		
+		};
+
+
+	}
+
 }

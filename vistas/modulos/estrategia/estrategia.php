@@ -498,12 +498,16 @@ if(seteado){
                                       </div>`))
 
 
-          Object.keys(cerealesPlan).forEach(element => {
-            console.log(element)
+
+          let tds = `<td>${key}</td>`
+
+          cerealesPlan[insumosNameId[key]].forEach(element => {
+
+            tds +=   `<td><span class="planificado">${element}</span></td>`
+
           });
 
-          // $('#tbodyEstrategia').prepend($(``))
-
+          $('#tbodyEstrategia').prepend($(`<tr>${tds}</tr>`))
 
 
           index++
