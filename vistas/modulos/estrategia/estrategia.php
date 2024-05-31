@@ -179,18 +179,18 @@
               <tr>
 
                 <td>Kg Prom.</td>
-                <td><span class="planificado" id="kgPromPlan5"></span>0<span class="real" id="kgPromRReal5"></span></td>
-                <td><span class="planificado" id="kgPromPlan6"></span>0<span class="real" id="kgPromRReal6"></span></td>
-                <td><span class="planificado" id="kgPromPlan7"></span>0<span class="real" id="kgPromRReal7"></span></td>
-                <td><span class="planificado" id="kgPromPlan8"></span>0<span class="real" id="kgPromRReal8"></span></td>
-                <td><span class="planificado" id="kgPromPlan9"></span>0<span class="real" id="kgPromRReal9"></span></td>
-                <td><span class="planificado" id="kgPromPlan10"></span>0<span class="real" id="kgPromReal10"></span></td>
-                <td><span class="planificado" id="kgPromPlan11"></span>0<span class="real" id="kgPromReal11"></span></td>
-                <td><span class="planificado" id="kgPromPlan12"></span>0<span class="real" id="kgPromReal12"></span></td>
-                <td><span class="planificado" id="kgPromPlan1"></span>0<span class="real" id="kgPromRReal1"></span></td>
-                <td><span class="planificado" id="kgPromPlan2"></span>0<span class="real" id="kgPromRReal2"></span></td>
-                <td><span class="planificado" id="kgPromPlan3"></span>0<span class="real" id="kgPromRReal3"></span></td>
-                <td><span class="planificado" id="kgPromPlan4"></span>0<span class="real" id="kgPromRReal4"></span></td>
+                <td><span class="planificado" id="kgPromPlan5"></span><span class="real" id="kgPromRReal5"></span></td>
+                <td><span class="planificado" id="kgPromPlan6"></span><span class="real" id="kgPromRReal6"></span></td>
+                <td><span class="planificado" id="kgPromPlan7"></span><span class="real" id="kgPromRReal7"></span></td>
+                <td><span class="planificado" id="kgPromPlan8"></span><span class="real" id="kgPromRReal8"></span></td>
+                <td><span class="planificado" id="kgPromPlan9"></span><span class="real" id="kgPromRReal9"></span></td>
+                <td><span class="planificado" id="kgPromPlan10"></span><span class="real" id="kgPromReal10"></span></td>
+                <td><span class="planificado" id="kgPromPlan11"></span><span class="real" id="kgPromReal11"></span></td>
+                <td><span class="planificado" id="kgPromPlan12"></span><span class="real" id="kgPromReal12"></span></td>
+                <td><span class="planificado" id="kgPromPlan1"></span><span class="real" id="kgPromRReal1"></span></td>
+                <td><span class="planificado" id="kgPromPlan2"></span><span class="real" id="kgPromRReal2"></span></td>
+                <td><span class="planificado" id="kgPromPlan3"></span><span class="real" id="kgPromRReal3"></span></td>
+                <td><span class="planificado" id="kgPromPlan4"></span><span class="real" id="kgPromRReal4"></span></td>
 
               </tr>
 
@@ -207,12 +207,26 @@
                 <?php } 
 
                 } else {
-             
-                    foreach (json_decode($data['estrategia']['adpPlan']) as $key => $value) { ?>
 
-                      <td><span class="planificado"><?=$value?></span><span class="real"></span></td>
-                      
-                    <?php } 
+                  $adpPlan = json_decode($data['estrategia']['adpPlan']);
+
+                  $i = 5;
+
+                  while (true) { ?>
+
+                    <td><span class="planificado" id="adpPlan<?=$i?>"><?=$adpPlan[$i]?></span><span class="real"></span></td>
+
+                    <?php
+                    if ($i === 12) {
+                        $i = 1;  // Reinicia el índice a 1 después de llegar a 12
+                    } else if ($i === 4) {
+                        break;  // Termina el bucle después de llegar a 4
+                    } else {
+                        $i++;
+                    }
+
+                  }
+             
                 } ?>
 
               </tr>
@@ -231,11 +245,24 @@
 
                 } else {
 
-                  foreach (json_decode($data['estrategia']['msPlan']) as $key => $value) { ?>
+                  $msPlan = json_decode($data['estrategia']['msPlan']);
 
-                    <td><span class="planificado"><?=$value?></span><span class="real"></span></td>
-                    
-                  <?php } 
+                  $i = 5;
+
+                  while (true) { ?>
+
+                    <td><span class="planificado" id="msPlan<?=$i?>"><?=$msPlan[$i]?></span><span class="real"></span></td>
+
+                    <?php
+                    if ($i === 12) {
+                        $i = 1;  // Reinicia el índice a 1 después de llegar a 12
+                    } else if ($i === 4) {
+                        break;  // Termina el bucle después de llegar a 4
+                    } else {
+                        $i++;
+                    }
+
+                  }
 
 
                 } ?> 
@@ -245,18 +272,18 @@
               <tr>
 
                 <td>Cons. MS</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
-                <td>0</td>
+                <td><span class="planificado" id="consumoMSPlan5"></span><span class="real" id="consumoMSReal5"></span></td>
+                <td><span class="planificado" id="consumoMSPlan6"></span><span class="real" id="consumoMSReal6"></span></td>
+                <td><span class="planificado" id="consumoMSPlan7"></span><span class="real" id="consumoMSReal7"></span></td>
+                <td><span class="planificado" id="consumoMSPlan8"></span><span class="real" id="consumoMSReal8"></span></td>
+                <td><span class="planificado" id="consumoMSPlan9"></span><span class="real" id="consumoMSReal9"></span></td>
+                <td><span class="planificado" id="consumoMSPlan10"></span><span class="real" id="consumoMSPReal0"></span></td>
+                <td><span class="planificado" id="consumoMSPlan11"></span><span class="real" id="consumoMSPReal1"></span></td>
+                <td><span class="planificado" id="consumoMSPlan12"></span><span class="real" id="consumoMSPReal2"></span></td>
+                <td><span class="planificado" id="consumoMSPlan1"></span><span class="real" id="consumoMSReal1"></span></td>
+                <td><span class="planificado" id="consumoMSPlan2"></span><span class="real" id="consumoMSReal2"></span></td>
+                <td><span class="planificado" id="consumoMSPlan3"></span><span class="real" id="consumoMSReal3"></span></td>
+                <td><span class="planificado" id="consumoMSPlan4"></span><span class="real" id="consumoMSReal4"></span></td>
 
               </tr>
 
@@ -369,6 +396,99 @@
 
 <script>
 
+let calcularPesoPromedio = ()=>{
+
+  let ingresoAccum = 0
+  let ventaAccum = 0
+
+  let kgIngresoAccum = 0
+  let kgVentaAccum = 0
+
+  let totalkgVentaAccum = 0
+  let totalkgIngresoAccum = 0
+
+  let kgTotalAnterior = 0
+
+  setTimeout(() => {
+    
+    $('.ingreso').each(function(){
+      
+      let index = $(this).attr('id').replace('ingreso','')
+  
+      let ingreso = $(this).val()
+      ingresoAccum += Number(ingreso)
+
+      let kgIng = $(`#kgIngreso${index}`).val()
+      kgIngresoAccum += Number(kgIng)
+
+      let kgIngTotal = Number(ingreso) * Number(kgIng)
+      totalkgIngresoAccum += Number(kgIngTotal)
+
+      let venta = $(`#venta${index}`).val()
+      ventaAccum += Number(venta)
+
+      let kgVenta = $(`#kgVenta${index}`).val()
+      kgVentaAccum += Number(kgVenta)
+
+      let kgVentaTotal = Number(venta) * Number(kgVenta)
+      totalkgVentaAccum += Number(kgVentaTotal)
+
+      
+      let adp = Number($(`#adpPlan${index}`).html())
+
+      let KgProm = 10000
+
+      let calc = 0
+
+      let stockActual = 0
+
+      if(index == 5){
+
+        stockActual = Number($('#stockAnimales').val())
+
+        kgTotalAnterior = stockActual * KgProm
+
+        calc = kgTotalAnterior + kgIngTotal - kgVentaTotal + (adp * stockActual * 30)
+
+        kgTotalAnterior = calc
+
+      } else {
+
+        stockActual = Number($(`#stockPlan${index}`).html())
+
+        let stockAnterior = 0
+
+        if(index == 1){
+
+          stockAnterior = Number($(`#stockPlan${12}`).html())
+          
+        } else {
+          
+          stockAnterior = Number($(`#stockPlan${index - 1}`).html())
+
+        }
+        
+        calc = kgTotalAnterior + kgIngTotal - kgVentaTotal + (adp * stockAnterior * 30)
+        
+        kgTotalAnterior = calc
+
+      }
+
+      let pesoProm = calc / stockActual
+
+      $(`#kgPromPlan${index}`).html(pesoProm)
+
+      let porcentajeMS = Number($(`#porcentajeMS${index}`).html())
+
+      let consumoMS = pesoProm / porcentajeMS
+
+      $(`#consumoMSPlan${index}`).html(consumoMS)
+
+    })
+    
+  }, 500);
+}
+
 let calculateStockAndTotals = () => {
 
   let stock = parseFloat($('#stockAnimales').val())
@@ -450,7 +570,6 @@ if(seteado){
       let data = JSON.parse(resp)
 
       dataEstrategia = data.estrategia
-      console.log(dataEstrategia)
 
       // CARGO STOCK ANIMALES
 
@@ -560,6 +679,9 @@ if(seteado){
 
     }
   })
+
+  calcularPesoPromedio()
+  
 }
         
 
